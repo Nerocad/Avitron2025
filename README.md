@@ -24,13 +24,11 @@ AvitoSalesTrackerBot — это Telegram-бот для личного учёта
 | Команда     | Роль        | Возмоности |
 | ----------- | ----------- | ----------
 | /start    | Все   | Приветствие и автоназначение роли (по ID) |
-| /help    | Все   | Список команд |
-	          	           
-	                        
-/available_sales	USER	          Показать непроданные товары с плановой ценой
-/add_sale	        ADMIN	          Добавить новый товар
-/mark_sold <id> 	ADMIN	          Отметить товар как проданный
-/edit_sale <id>	  ADMIN	          Изменить товар
-/delete_sale <id>	ADMIN	          Удалить товар
-/list_all	        ADMIN, SUPPLIER	Показать все записи
-/profit	          ADMIN         	Показать прибыль (фактическая продажа - закупка)
+| /help    | Все   | Список команд |          	                                   
+| /available_sales|	USER| Показать непроданные товары с плановой ценой|
+|/add_sale	      |  ADMIN	 |         Добавить новый товар|
+|/mark_sold <id> |	ADMIN	 |         Отметить товар как проданный|
+|/edit_sale <id>|	  ADMIN	  |        Изменить товар|
+|/delete_sale <id>|	ADMIN	|          Удалить товар|
+|/list_all|	        ADMIN, SUPPLIER	|Показать все записи
+|/profit	|          ADMIN   |      	Показать прибыль (фактическая продажа - закупка)
