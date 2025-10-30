@@ -9,10 +9,10 @@ import java.util.Objects;
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
     @Column(name = "chat_id", nullable = false, unique = true)
-    private long chatId;
+    private Long chatId;
 
     @Column(name = "username")
     private String username;
@@ -31,7 +31,7 @@ public class User {
         createdAt = LocalDateTime.now();
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
@@ -84,10 +84,12 @@ public class User {
 
     @Override
     public boolean equals(Object o) {
+        if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         User user = (User) o;
-        return id == user.id &&
-                chatId == user.chatId &&
+        if (id == null || user.id == null) return false;
+        return Objects.equals(id, user.id) &&
+                Objects.equals(chatId, user.chatId) &&
                 Objects.equals(username, user.username) &&
                 Objects.equals(role, user.role) &&
                 Objects.equals(createdAt, user.createdAt);
@@ -97,4 +99,6 @@ public class User {
     public int hashCode() {
         return Objects.hash(id);
     }
+
+
 }
