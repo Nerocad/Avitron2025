@@ -7,7 +7,7 @@ import org.apache.logging.log4j.core.Logger;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.telegram.telegrambots.meta.TelegramBotsApi;
 import org.telegram.telegrambots.updatesreceivers.DefaultBotSession;
-//тест
+//тест1
 public class Main {
     private static final Logger logger = (Logger) LogManager.getLogger(Main.class);
     public static void main(String[] args) {
