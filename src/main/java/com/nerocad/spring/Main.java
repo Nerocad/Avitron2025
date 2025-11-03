@@ -2,6 +2,10 @@ package com.nerocad.spring;
 
 import com.nerocad.spring.bot.SalesBot;
 import com.nerocad.spring.config.AppConfig;
+import com.nerocad.spring.util.JpaUtil;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityManagerFactory;
+import jakarta.persistence.Persistence;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.core.Logger;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
@@ -21,5 +25,6 @@ public class Main {
         } catch (Exception e) {
             logger.info("Ошибка при инициализации контекста", e);
         }
+
     }
 }
