@@ -2,12 +2,16 @@ package com.nerocad.spring;
 
 import com.nerocad.spring.bot.SalesBot;
 import com.nerocad.spring.config.AppConfig;
+import com.nerocad.spring.util.JpaUtil;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityManagerFactory;
+import jakarta.persistence.Persistence;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.core.Logger;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.telegram.telegrambots.meta.TelegramBotsApi;
 import org.telegram.telegrambots.updatesreceivers.DefaultBotSession;
-//
+
 public class Main {
     private static final Logger logger = (Logger) LogManager.getLogger(Main.class);
     public static void main(String[] args) {
@@ -21,5 +25,6 @@ public class Main {
         } catch (Exception e) {
             logger.info("Ошибка при инициализации контекста", e);
         }
+
     }
 }

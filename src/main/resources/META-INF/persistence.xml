@@ -7,7 +7,7 @@
     <persistence-unit name="avitron-bot" transaction-type="RESOURCE_LOCAL">
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
 
-        <class>com.nerocad.spring.entity.Sale</class>>
+        <class>com.nerocad.spring.entity.Product</class>>
         <class>com.nerocad.spring.entity.User</class>>
         <properties>
             <property name="jakarta.persistence.jdbc.driver" value="org.postgresql.Driver"/>
@@ -22,6 +22,7 @@
             <property name="hibernate.hikari.idleTimeout" value="600000"/>
             <property name="hibernate.hikari.connectionTimeout" value="30000"/>
             <property name="hibernate.hikari.maxLifetime" value="1800000"/>
+            <property name="show_sql" value="true"/>
         </properties>
     </persistence-unit>
 </persistence>
