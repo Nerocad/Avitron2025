@@ -2,13 +2,12 @@ package com.nerocad.spring.entity;
 
 import jakarta.persistence.*;
 
-import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
 @Entity
-public class Sale {
+public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -34,7 +33,7 @@ public class Sale {
     @Column(name = "created_at")
     private LocalDateTime createdAt;
 
-    public Sale() {
+    public Product() {
     }
 
     protected void onCreate() {
@@ -109,16 +108,16 @@ public class Sale {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Sale sale = (Sale) o;
-        if (id == null || sale.id == null) return false;
-        return supplierPrice == sale.supplierPrice &&
-                salePrice == sale.salePrice &&
-                isSold == sale.isSold &&
-                Objects.equals(id, sale.id) &&
-                Objects.equals(productType, sale.productType) &&
-                Objects.equals(productName, sale.productName) &&
-                Objects.equals(saleDate, sale.saleDate) &&
-                Objects.equals(createdAt, sale.createdAt);
+        Product product = (Product) o;
+        if (id == null || product.id == null) return false;
+        return supplierPrice == product.supplierPrice &&
+                salePrice == product.salePrice &&
+                isSold == product.isSold &&
+                Objects.equals(id, product.id) &&
+                Objects.equals(productType, product.productType) &&
+                Objects.equals(productName, product.productName) &&
+                Objects.equals(saleDate, product.saleDate) &&
+                Objects.equals(createdAt, product.createdAt);
     }
 
     @Override
