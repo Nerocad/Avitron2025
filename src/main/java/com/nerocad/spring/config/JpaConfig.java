@@ -21,6 +21,7 @@ public class JpaConfig {
         return emf;
     }
 
+    @Bean
     public JpaTransactionManager transactionManager(EntityManagerFactory emf) {
         JpaTransactionManager transactionManager = new JpaTransactionManager();
         transactionManager.setEntityManagerFactory(emf);

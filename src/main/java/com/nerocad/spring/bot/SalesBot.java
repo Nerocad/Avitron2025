@@ -1,8 +1,11 @@
 package com.nerocad.spring.bot;
 
 import com.nerocad.spring.config.BotConfig;
+import com.nerocad.spring.service.ConversationService;
+import com.nerocad.spring.service.ProductService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.core.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
@@ -12,6 +15,8 @@ import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 @Component
 public class SalesBot extends TelegramLongPollingBot {
     private static final Logger logger = (Logger) LogManager.getLogger(SalesBot.class);
+    private final ProductService productService;
+    private final ConversationService conversationService;
     private final String GREETING = "Привет!\nЯ бот для учёта продаж на Авито. " +
             "Пока я еще не готов.\n" +
             "Готовы только заглушки на основные команды.\n" +
@@ -36,9 +41,13 @@ public class SalesBot extends TelegramLongPollingBot {
     private final String UNKNOWN_MESSAGE = "Неизвестная команда. Напиши /help что бы увидеть список команд";
     private final BotConfig botConfig;
 
-    public SalesBot(BotConfig botConfig) {
+    @Autowired
+    public SalesBot(BotConfig botConfig, ProductService productService,
+                    ConversationService conversationService) {
         super(botConfig.gotBotToken());
         this.botConfig = botConfig;
+        this.productService = productService;
+        this.conversationService = conversationService;
     }
 
     @Override
@@ -52,20 +61,24 @@ public class SalesBot extends TelegramLongPollingBot {
             String messageText = update.getMessage().getText();
             long chatId = update.getMessage().getChatId();
 
-            String response = switch (messageText) {
-                case "/start" -> GREETING;
-                case "/help" -> HELP_MESSAGE;
-                case "/available" -> AVAILABLE_MESSAGE;
-                case "/add" -> ADD_MESSAGE;
-                case "/mark" -> MARK_MESSAGE;
-                case "/edit" -> EDIT_MESSAGE;
-                case "/delete" -> DELETE_MESSAGE;
-                case "/profit" -> PROFIT_MESSAGE;
-                case "/list_all" -> LIST_ALL_MESSAGE;
-                default -> UNKNOWN_MESSAGE;
-            };
+//            String response = switch (messageText) {
+//                case "/start" -> GREETING;
+//                case "/help" -> HELP_MESSAGE;
+//                case "/available" -> AVAILABLE_MESSAGE;
+//                case "/add" -> ADD_MESSAGE;
+//                case "/mark" -> MARK_MESSAGE;
+//                case "/edit" -> EDIT_MESSAGE;
+//                case "/delete" -> DELETE_MESSAGE;
+//                case "/profit" -> PROFIT_MESSAGE;
+//                case "/list_all" -> LIST_ALL_MESSAGE;
+//                default -> UNKNOWN_MESSAGE;
+            //sendMessage(chatId, response);
+            if (messageText.equals("/add")) {
+                String reply = conversationService.saveAnswer(chatId, messageText);
+                sendMessage(chatId, reply);
+            }
 
-            sendMessage(chatId, response);
+
         }
     }
 
@@ -79,5 +92,9 @@ public class SalesBot extends TelegramLongPollingBot {
         } catch (TelegramApiException e) {
             logger.info("Failed send message", e);
         }
+    }
+
+    private void addProduct() {
+
     }
 }

@@ -14,8 +14,6 @@ public class Main {
         try (AnnotationConfigApplicationContext context =
                      new AnnotationConfigApplicationContext(AppConfig.class)) {
             SalesBot bot = context.getBean(SalesBot.class);
-            TelegramBotsApi botsApi = new TelegramBotsApi(DefaultBotSession.class);
-            botsApi.registerBot(bot);
 
             System.out.println("Бот успешно запущен");
         } catch (Exception e) {
